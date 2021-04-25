@@ -11,7 +11,7 @@ import { fetchQuizQuestions } from "./API";
 import { Difficulty, QuestionState } from "./API";
 
 //styles
-import { GlobalStyle } from "./App.styles";
+import { GlobalStyle, Wrapper, Shader } from "./App.styles";
 
 export type AnswerObject = {
   question: string;
@@ -99,7 +99,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <div className="App">
+      <Wrapper>
         <h1>Quiz</h1>
         {(gameOver || userAnswers.length === TOTAL_QUESTIONS) && (
           <button className="start" onClick={startTrivia}>
@@ -126,7 +126,7 @@ function App() {
               Next Question
             </button>
           )}
-      </div>
+      </Wrapper>
     </>
   );
 }
