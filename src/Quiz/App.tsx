@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
 //components
-import QuestionCard from "./components/QuestionCard";
+import QuestionCard from "../components/QuestionCard";
 
 //api
-import { fetchQuizQuestions } from "./API";
+import { fetchQuizQuestions } from "../API";
 
 //types/enums
 
-import { Difficulty, QuestionState } from "./API";
+import { Difficulty, QuestionState } from "../API";
 
 //styles
 import { GlobalStyle, Wrapper } from "./App.styles";
