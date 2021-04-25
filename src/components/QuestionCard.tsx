@@ -43,7 +43,6 @@ const QuestionCard: React.FC<QuestionProps> = ({
             </ButtonWrapper>
           );
         })}
-        {console.log(userAnswer?.correctAnswer)}
       </div>
     </Wrapper>
   );

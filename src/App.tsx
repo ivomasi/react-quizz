@@ -11,7 +11,7 @@ import { fetchQuizQuestions } from "./API";
 import { Difficulty, QuestionState } from "./API";
 
 //styles
-import { GlobalStyle, Wrapper, Shader } from "./App.styles";
+import { GlobalStyle, Wrapper } from "./App.styles";
 
 export type AnswerObject = {
   question: string;
@@ -39,8 +39,6 @@ function App() {
   const TOTAL_QUESTIONS = 10;
 
   //effect
-
-  console.log(questions);
 
   //funcs
 
@@ -70,8 +68,6 @@ function App() {
     //if it was, add score
     if (correct) {
       setScore((prevScore) => prevScore + 1);
-    } else {
-      console.log("not correct");
     }
 
     //create user answer object and push to array, so it can be displayed at the and of quiz

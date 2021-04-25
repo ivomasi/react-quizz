@@ -21,16 +21,6 @@ export const GlobalStyle = createGlobalStyle`
     }
 `;
 
-export const Shader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 80%;
-  height: 80%;
-  background-color: rgba(0, 0, 0, 0.9);
-`;
-
 export const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
