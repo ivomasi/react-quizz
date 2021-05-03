@@ -6,6 +6,9 @@ import ActionButton from "../components/ActionButton";
 //router
 import { useHistory } from "react-router-dom";
 
+//styles
+import { SharedLayout } from "../shared_styles";
+
 const MainMenu: React.FC = (props) => {
   const history = useHistory();
 
@@ -14,11 +17,11 @@ const MainMenu: React.FC = (props) => {
   };
 
   return (
-    <div>
+    <SharedLayout>
       <Heading text={"How much do you know?"} />
 
       <ActionButton text={"Start"} callback={handleStart} />
-    </div>
+    </SharedLayout>
   );
 };
 

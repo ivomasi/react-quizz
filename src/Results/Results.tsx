@@ -1,7 +1,10 @@
 import React from "react";
 
+//styles
+import { SharedLayout } from "../shared_styles";
+
 const Results = () => {
-  return <div>Results page</div>;
+  return <SharedLayout>Results page</SharedLayout>;
 };
 
 export default Results;
