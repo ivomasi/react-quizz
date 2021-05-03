@@ -3,6 +3,7 @@ import React, { useState } from "react";
 //components
 import QuestionCard from "../components/QuestionCard";
 import Heading from "../components/Heading";
+import ActionButton from "../components/ActionButton";
 
 //api
 import { fetchQuizQuestions } from "../API";
@@ -98,9 +99,7 @@ function Quiz() {
       <Wrapper>
         <Heading text={`Question ${number + 1} / ${TOTAL_QUESTIONS}`} />
         {(gameOver || userAnswers.length === TOTAL_QUESTIONS) && (
-          <button className="start" onClick={startTrivia}>
-            Start
-          </button>
+          <ActionButton text={"Start"} callback={startTrivia} />
         )}
         {!gameOver && <p className="score">Score: {score}</p>}
         {loading && <p>Loading...</p>}
@@ -116,9 +115,7 @@ function Quiz() {
           !gameOver &&
           userAnswers.length === number + 1 &&
           number + 1 !== TOTAL_QUESTIONS && (
-            <button className="next" onClick={nextQuestion}>
-              Next Question
-            </button>
+            <ActionButton text={"Next Question"} callback={nextQuestion} />
           )}
       </Wrapper>
     </>
