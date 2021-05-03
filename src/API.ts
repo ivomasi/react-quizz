@@ -1,4 +1,7 @@
+import axios from "axios";
+
 //utils
+
 import { shuffleArr } from "./utils";
 
 export enum Difficulty {
@@ -19,7 +22,7 @@ export type Question = {
 //adding another property to question, cuz question type is for fetching and it doesnt have answers property, but i need type for state in app with answers property as well
 export type QuestionState = Question & { answers: string[] };
 
-//fetch from trivia
+//fetch questions from trivia
 export const fetchQuizQuestions = async (
   amount: number,
   difficulty: Difficulty
@@ -41,4 +44,13 @@ export const fetchQuizQuestions = async (
       question.correct_answer,
     ]),
   }));
+};
+
+//fetch categories
+export const fetchCategories = async () => {
+  const endpoint = "https://opentdb.com/api_category.php";
+
+  const response = await axios.get(endpoint);
+
+  return response.data.trivia_categories;
 };
