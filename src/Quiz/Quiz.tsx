@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 //components
 import QuestionCard from "../components/QuestionCard";
+import Heading from "../components/Heading";
 
 //api
 import { fetchQuizQuestions } from "../API";
@@ -95,7 +96,7 @@ function Quiz() {
   return (
     <>
       <Wrapper>
-        <h1>Quiz</h1>
+        <Heading text={`Question ${number + 1}`} />
         {(gameOver || userAnswers.length === TOTAL_QUESTIONS) && (
           <button className="start" onClick={startTrivia}>
             Start

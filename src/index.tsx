@@ -7,7 +7,7 @@ import MainMenu from "./MainMenu/MainMenu";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Quiz />
   </React.StrictMode>,
   document.getElementById("root")
 );

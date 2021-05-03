@@ -2,12 +2,16 @@ import React from "react";
 
 import { GlobalStyle } from "./App.styles";
 
+//components/views
+
+import MainMenu from "./MainMenu/MainMenu";
+
 function App() {
   return (
-    <div>
+    <main>
       <GlobalStyle />
-      main app component
-    </div>
+      <MainMenu />
+    </main>
   );
 }
 
