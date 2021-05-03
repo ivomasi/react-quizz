@@ -96,7 +96,7 @@ function Quiz() {
   return (
     <>
       <Wrapper>
-        <Heading text={`Question ${number + 1}`} />
+        <Heading text={`Question ${number + 1} / ${TOTAL_QUESTIONS}`} />
         {(gameOver || userAnswers.length === TOTAL_QUESTIONS) && (
           <button className="start" onClick={startTrivia}>
             Start
@@ -106,8 +106,6 @@ function Quiz() {
         {loading && <p>Loading...</p>}
         {!gameOver && !loading && (
           <QuestionCard
-            questionNr={number + 1}
-            totalQuestions={TOTAL_QUESTIONS}
             question={questions[number].question}
             answers={questions[number].answers}
             userAnswer={userAnswers ? userAnswers[number] : undefined}
