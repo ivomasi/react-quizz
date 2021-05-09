@@ -11,6 +11,7 @@ export const InsideWrapper = styled.div`
   display: flex;
   overflow: hidden;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+  justify-content: space-evenly;
 
   @media only screen and (max-width: 1000px) {
     flex-direction: column;

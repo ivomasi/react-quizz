@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Heading from "../components/Heading";
 import ActionButton from "../components/ActionButton";
 import CategoryList from "./CategoryList/CategoryList";
+import DifficultyList from "./DiffitcultyList/DifficultyList";
 
 //router
 import { useHistory } from "react-router-dom";
@@ -26,6 +27,8 @@ const MainMenu: React.FC = (props) => {
   //states
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [difficulty, setDifficulty] = useState("");
   const history = useHistory();
 
   //fetching effect
@@ -42,7 +45,17 @@ const MainMenu: React.FC = (props) => {
   };
 
   const handleCategorySelect = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log(e.currentTarget.value);
+    const cat = e.currentTarget.value;
+    console.log(e.currentTarget);
+
+    setSelectedCategory(cat);
+  };
+
+  const handleDifficultySelect = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const dif = e.currentTarget.value;
+    console.log(dif);
+
+    setDifficulty(dif);
   };
 
   return (
@@ -52,6 +65,10 @@ const MainMenu: React.FC = (props) => {
         <CategoryList
           categories={categories}
           handleCategorySelect={handleCategorySelect}
+        />
+        <DifficultyList
+          handleDifficultySelect={handleDifficultySelect}
+          difficulty={difficulty}
         />
       </InsideWrapper>
 
