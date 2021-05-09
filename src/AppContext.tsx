@@ -10,6 +10,15 @@ type ContextProps = {
   setUserID: (id: string) => void;
   difficulty: string;
   setDifficulty: (d: string) => void;
+  userAnswers: AnswerObject[];
+  setUserAnswers: (a: AnswerObject[]) => void;
+};
+
+type AnswerObject = {
+  question: string;
+  answer: string;
+  correct: boolean;
+  correctAnswer: string;
 };
 
 type ProviderProps = {
@@ -25,6 +34,8 @@ export const AppContext = React.createContext<ContextProps>({
   setUserID: () => "",
   difficulty: "",
   setDifficulty: () => "",
+  userAnswers: [],
+  setUserAnswers: () => [],
 });
 
 export const AppContextProvider: React.FC<ProviderProps> = ({ children }) => {
@@ -32,6 +43,7 @@ export const AppContextProvider: React.FC<ProviderProps> = ({ children }) => {
   const [name, setName] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [userID, setUserID] = useState("");
+  const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
 
   return (
     <AppContext.Provider
@@ -44,6 +56,8 @@ export const AppContextProvider: React.FC<ProviderProps> = ({ children }) => {
         setUserID,
         difficulty,
         setDifficulty,
+        userAnswers,
+        setUserAnswers,
       }}
     >
       {children}
