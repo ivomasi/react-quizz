@@ -10,7 +10,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import { AppContext } from "../AppContext";
 
 //router
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 //api
 import { fetchQuizQuestions } from "../API";
@@ -61,7 +61,7 @@ function Quiz() {
   //need to get id of category from main menu to be fetched
   const location: LocationProps = useLocation();
 
-  console.log(location.state);
+  const history = useHistory();
   //effect
 
   useEffect(() => {
@@ -122,6 +122,12 @@ function Quiz() {
     }
   };
 
+  const finishGame = () => {
+    history.push("/54454/result");
+  };
+
+  console.log(gameOver);
+
   return (
     <>
       <Wrapper loading={loading}>
@@ -140,11 +146,13 @@ function Quiz() {
               />
             )}
             {!loading &&
-              !gameOver &&
-              userAnswers.length === number + 1 &&
-              number + 1 !== TOTAL_QUESTIONS && (
-                <ActionButton text={"Next Question"} callback={nextQuestion} />
-              )}
+            !gameOver &&
+            userAnswers.length === number + 1 &&
+            number + 1 !== TOTAL_QUESTIONS ? (
+              <ActionButton text={"Next Question"} callback={nextQuestion} />
+            ) : (
+              <ActionButton text={"Finish"} callback={finishGame} />
+            )}
           </>
         )}
       </Wrapper>
