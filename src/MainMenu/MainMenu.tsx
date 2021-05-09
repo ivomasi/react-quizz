@@ -82,7 +82,7 @@ const MainMenu: React.FC = (props) => {
               <h1>Choose Difficulty</h1>
             </DifficultyList>
           </InsideWrapper>
-          <input type="text" onChange={handleInput} />
+          <input type="text" placeholder="Enter name" onChange={handleInput} />
           <ActionButton text={"Start"} callback={handleStart} />
         </>
       )}

@@ -4,6 +4,15 @@ import { SharedLayout } from "../shared_styles";
 
 export const Wrapper = styled(SharedLayout)`
   justify-content: space-evenly;
+
+  input {
+    height: 2rem;
+    line-height: 2rem;
+    border-radius: 5px;
+    border: 2px solid #008583;
+    outline: none;
+    padding: 0 0.5rem;
+  }
 `;
 
 export const InsideWrapper = styled.div`
