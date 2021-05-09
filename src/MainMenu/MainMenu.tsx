@@ -56,6 +56,8 @@ const MainMenu: React.FC = (props) => {
     setDifficulty(dif);
   };
 
+  console.log(difficulty, selectedCategory);
+
   return (
     <SharedLayout>
       <Heading text={"How much do you know?"} />
