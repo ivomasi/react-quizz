@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 //components
 import Heading from "../components/Heading";
@@ -38,7 +38,10 @@ const MainMenu: React.FC = (props) => {
   }, []);
 
   const handleStart = () => {
-    console.log("start it");
+    if (!selectedCategory || !difficulty) {
+      alert("Choose variations");
+      // create something meaningfull
+    }
   };
 
   const handleCategorySelect = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -62,15 +65,8 @@ const MainMenu: React.FC = (props) => {
     <SharedLayout>
       <Heading text={"How much do you know?"} />
       <InsideWrapper>
-        <CategoryList
-          categories={categories}
-          handleCategorySelect={handleCategorySelect}
-          selectedCategory={selectedCategory}
-        ></CategoryList>
-        <DifficultyList
-          handleDifficultySelect={handleDifficultySelect}
-          difficulty={difficulty}
-        >
+        <CategoryList categories={categories}></CategoryList>
+        <DifficultyList>
           <h1>Choose Difficulty</h1>
         </DifficultyList>
       </InsideWrapper>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 //styles
 import { DiffWrapper } from "./DifficultyList.styles";
@@ -6,34 +6,35 @@ import { DiffWrapper } from "./DifficultyList.styles";
 //components
 import ChoosingButton from "../../components/ChoosingButton";
 
-type DifficultyProps = {
-  handleDifficultySelect: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  difficulty: string;
-};
+//context
+import { AppContext } from "../../AppContext";
 
-const DifficultyList: React.FC<DifficultyProps> = ({
-  handleDifficultySelect,
-  difficulty,
-  children,
-}) => {
+const DifficultyList: React.FC = () => {
+  const ctx = useContext(AppContext);
+
+  const handleSelect = (e: any) => {
+    const difficulty = e.currentTarget.value;
+
+    ctx.setDifficulty(difficulty);
+  };
   return (
     <div>
-      <h2>Choose Difficulty</h2>
+      <h2>Difficulty</h2>
       <DiffWrapper>
         <ChoosingButton
           value="easy"
-          currentlySelected={difficulty}
-          callback={handleDifficultySelect}
+          currentlySelected={ctx.difficulty}
+          callback={handleSelect}
         />
         <ChoosingButton
           value="medium"
-          currentlySelected={difficulty}
-          callback={handleDifficultySelect}
+          currentlySelected={ctx.difficulty}
+          callback={handleSelect}
         />
         <ChoosingButton
           value="hard"
-          currentlySelected={difficulty}
-          callback={handleDifficultySelect}
+          currentlySelected={ctx.difficulty}
+          callback={handleSelect}
         />
       </DiffWrapper>
     </div>
