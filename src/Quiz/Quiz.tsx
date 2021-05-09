@@ -1,20 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 //components
 import QuestionCard from "../components/QuestionCard";
 import Heading from "../components/Heading";
 import ActionButton from "../components/ActionButton";
 
+//context
+import { AppContext } from "../AppContext";
+
+//router
+import { useLocation } from "react-router-dom";
+
 //api
 import { fetchQuizQuestions } from "../API";
 
 //types/enums
 
-import { Difficulty, QuestionState } from "../API";
+import { QuestionState } from "../API";
 
 //styles
 import { Wrapper } from "./Quiz.styles";
 
+//types
 export type AnswerObject = {
   question: string;
   answer: string;
@@ -22,7 +29,14 @@ export type AnswerObject = {
   correctAnswer: string;
 };
 
-//app
+type CatID = {
+  id: number;
+};
+
+type LocationProps = {
+  pathname: string;
+  state: CatID;
+};
 
 function Quiz() {
   //states
@@ -38,9 +52,20 @@ function Quiz() {
 
   const [gameOver, setGameOver] = useState(true);
 
+  //change to get mroe questions, but different categories combined with difficulty allows different amount of question, might change it later
   const TOTAL_QUESTIONS = 10;
 
+  const ctx = useContext(AppContext);
+
+  //need to get id of category from main menu to be fetched
+  const location: LocationProps = useLocation();
+
+  console.log(location.state);
   //effect
+
+  useEffect(() => {
+    startTrivia();
+  }, []);
 
   //funcs
 
@@ -48,10 +73,11 @@ function Quiz() {
     setLoading(true);
     setGameOver(false);
 
+    const catID = location.state.id;
     const newQuestions = await fetchQuizQuestions(
       TOTAL_QUESTIONS,
-      Difficulty.EASY,
-      10
+      ctx.difficulty,
+      catID
     );
 
     setQuestions(newQuestions);

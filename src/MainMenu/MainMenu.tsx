@@ -30,8 +30,9 @@ const MainMenu: React.FC = (props) => {
   //states
   const [categories, setCategories] = useState<Category[]>([]);
 
-  const ctx = useContext(AppContext);
   const history = useHistory();
+
+  const ctx = useContext(AppContext);
 
   //fetching effect
   useEffect(() => {
@@ -41,10 +42,27 @@ const MainMenu: React.FC = (props) => {
   }, []);
 
   const handleStart = () => {
-    if (!ctx.selectedCategory || !ctx.difficulty) {
+    if (!ctx.selectedCategory || !ctx.difficulty || !ctx.name) {
       alert("Choose variations");
       // create something meaningfull
+    } else {
+      const categoryID = categories.find(
+        (cat) => ctx.selectedCategory === cat.name
+      );
+
+      history.push({
+        pathname: "/5454/quiz",
+        state: {
+          id: categoryID?.id,
+        },
+      });
     }
+  };
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.currentTarget.value;
+
+    ctx.setName(input);
   };
 
   return (
@@ -56,7 +74,7 @@ const MainMenu: React.FC = (props) => {
           <h1>Choose Difficulty</h1>
         </DifficultyList>
       </InsideWrapper>
-
+      <input type="text" onChange={handleInput} />
       <ActionButton text={"Start"} callback={handleStart} />
     </SharedLayout>
   );
