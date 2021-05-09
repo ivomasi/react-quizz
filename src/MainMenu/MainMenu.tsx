@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 
+//context
+import { AppContext } from "../AppContext";
+
 //components
 import Heading from "../components/Heading";
 import ActionButton from "../components/ActionButton";
@@ -26,8 +29,8 @@ export type Category = {
 const MainMenu: React.FC = (props) => {
   //states
   const [categories, setCategories] = useState<Category[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [difficulty, setDifficulty] = useState("");
+
+  const ctx = useContext(AppContext);
   const history = useHistory();
 
   //fetching effect
@@ -38,28 +41,11 @@ const MainMenu: React.FC = (props) => {
   }, []);
 
   const handleStart = () => {
-    if (!selectedCategory || !difficulty) {
+    if (!ctx.selectedCategory || !ctx.difficulty) {
       alert("Choose variations");
       // create something meaningfull
     }
   };
-
-  const handleCategorySelect = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const selectedCat = e.currentTarget.value;
-
-    const selectedCatID = categories.find((cat) => cat.name === selectedCat);
-    console.log(selectedCatID?.id);
-
-    setSelectedCategory(selectedCat);
-  };
-
-  const handleDifficultySelect = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const dif = e.currentTarget.value;
-
-    setDifficulty(dif);
-  };
-
-  console.log(difficulty, selectedCategory);
 
   return (
     <SharedLayout>
