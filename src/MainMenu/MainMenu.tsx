@@ -25,7 +25,6 @@ export type Category = {
 //----------------------------------------------------------------------//
 const MainMenu: React.FC = (props) => {
   //states
-  const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [difficulty, setDifficulty] = useState("");
@@ -33,8 +32,6 @@ const MainMenu: React.FC = (props) => {
 
   //fetching effect
   useEffect(() => {
-    setLoading((prev) => !prev);
-
     fetchCategories().then((data) => {
       setCategories(data);
     });
@@ -45,15 +42,16 @@ const MainMenu: React.FC = (props) => {
   };
 
   const handleCategorySelect = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const cat = e.currentTarget.value;
-    console.log(e.currentTarget);
+    const selectedCat = e.currentTarget.value;
 
-    setSelectedCategory(cat);
+    const selectedCatID = categories.find((cat) => cat.name === selectedCat);
+    console.log(selectedCatID?.id);
+
+    setSelectedCategory(selectedCat);
   };
 
   const handleDifficultySelect = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dif = e.currentTarget.value;
-    console.log(dif);
 
     setDifficulty(dif);
   };
@@ -65,6 +63,7 @@ const MainMenu: React.FC = (props) => {
         <CategoryList
           categories={categories}
           handleCategorySelect={handleCategorySelect}
+          selectedCategory={selectedCategory}
         />
         <DifficultyList
           handleDifficultySelect={handleDifficultySelect}

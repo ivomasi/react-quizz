@@ -1,5 +1,11 @@
 import React from "react";
 
+//styles
+import { DiffWrapper } from "./DifficultyList.styles";
+
+//components
+import ChoosingButton from "../../components/ChoosingButton";
+
 type DifficultyProps = {
   handleDifficultySelect: (e: React.MouseEvent<HTMLButtonElement>) => void;
   difficulty: string;
@@ -10,29 +16,23 @@ const DifficultyList: React.FC<DifficultyProps> = ({
   difficulty,
 }) => {
   return (
-    <div>
-      <button
+    <DiffWrapper>
+      <ChoosingButton
         value="easy"
-        style={{ backgroundColor: difficulty === "easy" ? "red" : "white" }}
-        onClick={handleDifficultySelect}
-      >
-        easy
-      </button>
-      <button
+        currentlySelected={difficulty}
+        callback={handleDifficultySelect}
+      />
+      <ChoosingButton
         value="medium"
-        style={{ backgroundColor: difficulty === "medium" ? "red" : "white" }}
-        onClick={handleDifficultySelect}
-      >
-        medium
-      </button>
-      <button
+        currentlySelected={difficulty}
+        callback={handleDifficultySelect}
+      />
+      <ChoosingButton
         value="hard"
-        style={{ backgroundColor: difficulty === "hard" ? "red" : "white" }}
-        onClick={handleDifficultySelect}
-      >
-        hard
-      </button>
-    </div>
+        currentlySelected={difficulty}
+        callback={handleDifficultySelect}
+      />
+    </DiffWrapper>
   );
 };
 
