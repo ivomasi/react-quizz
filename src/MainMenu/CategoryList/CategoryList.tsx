@@ -7,7 +7,7 @@ import { Category } from "../MainMenu";
 import ChoosingButton from "../../components/ChoosingButton";
 
 //styles
-import { ListOfCategories, CategoryButton } from "./CategoryList.styles";
+import { ListOfCategories } from "./CategoryList.styles";
 
 type Categories = {
   categories: Category[];
@@ -19,24 +19,28 @@ const CategoryList: React.FC<Categories> = ({
   categories,
   selectedCategory,
   handleCategorySelect,
+  children,
 }) => {
   return (
-    <ListOfCategories>
-      {categories.map((cat) => {
-        return (
-          <li key={cat.id}>
-            {/* <CategoryButton value={cat.id} onClick={handleCategorySelect}>
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <h2>Choose Category</h2>
+      <ListOfCategories>
+        {categories.map((cat) => {
+          return (
+            <li key={cat.id}>
+              {/* <CategoryButton value={cat.id} onClick={handleCategorySelect}>
               {cat.name}
             </CategoryButton> */}
-            <ChoosingButton
-              value={cat.name}
-              callback={handleCategorySelect}
-              currentlySelected={selectedCategory}
-            />
-          </li>
-        );
-      })}
-    </ListOfCategories>
+              <ChoosingButton
+                value={cat.name}
+                callback={handleCategorySelect}
+                currentlySelected={selectedCategory}
+              />
+            </li>
+          );
+        })}
+      </ListOfCategories>
+    </div>
   );
 };
 

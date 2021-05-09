@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const InsideWrapper = styled.div`
-  min-height: clamp(60%, 65%, 70%);
-  width: 95%;
+  height: clamp(55%, 60%, 70%);
+  width: 60%;
   display: flex;
   overflow: hidden;
   justify-content: space-evenly;
@@ -20,5 +20,7 @@ export const InsideWrapper = styled.div`
     align-items: center;
     justify-content: center;
     padding: 0.5rem;
+    min-height: auto;
+    width: 90%;
   }
 `;

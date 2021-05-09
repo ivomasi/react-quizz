@@ -66,11 +66,13 @@ const MainMenu: React.FC = (props) => {
           categories={categories}
           handleCategorySelect={handleCategorySelect}
           selectedCategory={selectedCategory}
-        />
+        ></CategoryList>
         <DifficultyList
           handleDifficultySelect={handleDifficultySelect}
           difficulty={difficulty}
-        />
+        >
+          <h1>Choose Difficulty</h1>
+        </DifficultyList>
       </InsideWrapper>
 
       <ActionButton text={"Start"} callback={handleStart} />

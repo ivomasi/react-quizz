@@ -14,25 +14,29 @@ type DifficultyProps = {
 const DifficultyList: React.FC<DifficultyProps> = ({
   handleDifficultySelect,
   difficulty,
+  children,
 }) => {
   return (
-    <DiffWrapper>
-      <ChoosingButton
-        value="easy"
-        currentlySelected={difficulty}
-        callback={handleDifficultySelect}
-      />
-      <ChoosingButton
-        value="medium"
-        currentlySelected={difficulty}
-        callback={handleDifficultySelect}
-      />
-      <ChoosingButton
-        value="hard"
-        currentlySelected={difficulty}
-        callback={handleDifficultySelect}
-      />
-    </DiffWrapper>
+    <div>
+      <h2>Choose Difficulty</h2>
+      <DiffWrapper>
+        <ChoosingButton
+          value="easy"
+          currentlySelected={difficulty}
+          callback={handleDifficultySelect}
+        />
+        <ChoosingButton
+          value="medium"
+          currentlySelected={difficulty}
+          callback={handleDifficultySelect}
+        />
+        <ChoosingButton
+          value="hard"
+          currentlySelected={difficulty}
+          callback={handleDifficultySelect}
+        />
+      </DiffWrapper>
+    </div>
   );
 };
 

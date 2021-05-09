@@ -13,12 +13,8 @@ export const ListOfCategories = styled.ul`
   scrollbar-width: none; /* Firefox */
   padding: 0;
   margin: 0;
-`;
 
-export const CategoryButton = styled.button`
-  width: 100%;
-  cursor: pointer;
-  background: linear-gradient(90deg, #56ccff, #6eafb4);
-  border: none;
-  border-radius: 2px;
+  @media only screen and (max-width: 1000px) {
+    height: 20rem;
+  }
 `;
