@@ -4,6 +4,7 @@ import React, { useState, useContext, useEffect } from "react";
 import QuestionCard from "../components/QuestionCard";
 import Heading from "../components/Heading";
 import ActionButton from "../components/ActionButton";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 //context
 import { AppContext } from "../AppContext";
@@ -123,27 +124,29 @@ function Quiz() {
 
   return (
     <>
-      <Wrapper>
+      <Wrapper loading={loading}>
         <Heading text={`Question ${number + 1} / ${TOTAL_QUESTIONS}`} />
-        {(gameOver || userAnswers.length === TOTAL_QUESTIONS) && (
-          <ActionButton text={"Start"} callback={startTrivia} />
+        {loading ? (
+          <LoadingSpinner />
+        ) : (
+          <>
+            {!gameOver && <p className="score">Score: {score}</p>}
+            {!gameOver && !loading && (
+              <QuestionCard
+                question={questions[number].question}
+                answers={questions[number].answers}
+                userAnswer={userAnswers ? userAnswers[number] : undefined}
+                callback={checkAnswer}
+              />
+            )}
+            {!loading &&
+              !gameOver &&
+              userAnswers.length === number + 1 &&
+              number + 1 !== TOTAL_QUESTIONS && (
+                <ActionButton text={"Next Question"} callback={nextQuestion} />
+              )}
+          </>
         )}
-        {!gameOver && <p className="score">Score: {score}</p>}
-        {loading && <p>Loading...</p>}
-        {!gameOver && !loading && (
-          <QuestionCard
-            question={questions[number].question}
-            answers={questions[number].answers}
-            userAnswer={userAnswers ? userAnswers[number] : undefined}
-            callback={checkAnswer}
-          />
-        )}
-        {!loading &&
-          !gameOver &&
-          userAnswers.length === number + 1 &&
-          number + 1 !== TOTAL_QUESTIONS && (
-            <ActionButton text={"Next Question"} callback={nextQuestion} />
-          )}
       </Wrapper>
     </>
   );

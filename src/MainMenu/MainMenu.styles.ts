@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+import { SharedLayout } from "../shared_styles";
+
+export const Wrapper = styled(SharedLayout)`
+  justify-content: space-evenly;
+`;
+
 export const InsideWrapper = styled.div`
   height: clamp(55%, 60%, 70%);
   width: 60%;

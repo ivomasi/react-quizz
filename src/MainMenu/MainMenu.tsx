@@ -9,6 +9,8 @@ import ActionButton from "../components/ActionButton";
 import CategoryList from "./CategoryList/CategoryList";
 import DifficultyList from "./DiffitcultyList/DifficultyList";
 
+import LoadingSpinner from "../components/LoadingSpinner";
+
 //router
 import { useHistory } from "react-router-dom";
 
@@ -16,8 +18,7 @@ import { useHistory } from "react-router-dom";
 import { fetchCategories } from "../API";
 
 //styles
-import { SharedLayout } from "../shared_styles";
-import { InsideWrapper } from "./MainMenu.styles";
+import { InsideWrapper, Wrapper } from "./MainMenu.styles";
 
 //types
 export type Category = {
@@ -28,6 +29,7 @@ export type Category = {
 //----------------------------------------------------------------------//
 const MainMenu: React.FC = (props) => {
   //states
+  const [loading, setLoading] = useState<boolean>(true);
   const [categories, setCategories] = useState<Category[]>([]);
 
   const history = useHistory();
@@ -36,8 +38,10 @@ const MainMenu: React.FC = (props) => {
 
   //fetching effect
   useEffect(() => {
+    setLoading(true);
     fetchCategories().then((data) => {
       setCategories(data);
+      setLoading(false);
     });
   }, []);
 
@@ -66,17 +70,23 @@ const MainMenu: React.FC = (props) => {
   };
 
   return (
-    <SharedLayout>
+    <Wrapper>
       <Heading text={"How much do you know?"} />
-      <InsideWrapper>
-        <CategoryList categories={categories}></CategoryList>
-        <DifficultyList>
-          <h1>Choose Difficulty</h1>
-        </DifficultyList>
-      </InsideWrapper>
-      <input type="text" onChange={handleInput} />
-      <ActionButton text={"Start"} callback={handleStart} />
-    </SharedLayout>
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <InsideWrapper>
+            <CategoryList categories={categories}></CategoryList>
+            <DifficultyList>
+              <h1>Choose Difficulty</h1>
+            </DifficultyList>
+          </InsideWrapper>
+          <input type="text" onChange={handleInput} />
+          <ActionButton text={"Start"} callback={handleStart} />
+        </>
+      )}
+    </Wrapper>
   );
 };
 

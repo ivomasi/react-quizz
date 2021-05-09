@@ -7,8 +7,6 @@ import { Category } from "../MainMenu";
 import ChoosingButton from "../../components/ChoosingButton";
 
 //context
-
-//context
 import { AppContext } from "../../AppContext";
 
 //styles
@@ -36,9 +34,6 @@ const CategoryList: React.FC<Categories> = ({ categories }) => {
         {categories.map((cat) => {
           return (
             <li key={cat.id}>
-              {/* <CategoryButton value={cat.id} onClick={handleCategorySelect}>
-              {cat.name}
-            </CategoryButton> */}
               <ChoosingButton
                 value={cat.name}
                 callback={handleSelect}

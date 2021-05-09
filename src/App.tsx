@@ -22,9 +22,9 @@ function App() {
   return (
     <main>
       <GlobalStyle />
-      <Router>
-        <Switch>
-          <AppContextProvider>
+      <AppContextProvider>
+        <Router>
+          <Switch>
             <Route exact path="/">
               <MainMenu />
             </Route>
@@ -37,9 +37,9 @@ function App() {
             <Route path="*">
               <Error />
             </Route>
-          </AppContextProvider>
-        </Switch>
-      </Router>
+          </Switch>
+        </Router>
+      </AppContextProvider>
     </main>
   );
 }
