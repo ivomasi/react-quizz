@@ -11,6 +11,8 @@ import DifficultyList from "./DiffitcultyList/DifficultyList";
 
 import LoadingSpinner from "../components/LoadingSpinner";
 
+//id creator
+import { v4 as uuidv4 } from "uuid";
 //router
 import { useHistory } from "react-router-dom";
 
@@ -54,8 +56,12 @@ const MainMenu: React.FC = (props) => {
         (cat) => ctx.selectedCategory === cat.name
       );
 
+      const newID: string = uuidv4();
+
+      ctx.setUserID(newID);
+
       history.push({
-        pathname: "/5454/quiz",
+        pathname: `/${newID}/quiz`,
         state: {
           id: categoryID?.id,
         },

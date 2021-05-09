@@ -123,10 +123,8 @@ function Quiz() {
   };
 
   const finishGame = () => {
-    history.push("/54454/result");
+    history.push(`/${ctx.userID}/result`);
   };
-
-  console.log(gameOver);
 
   return (
     <>
@@ -151,7 +149,9 @@ function Quiz() {
             number + 1 !== TOTAL_QUESTIONS ? (
               <ActionButton text={"Next Question"} callback={nextQuestion} />
             ) : (
-              <ActionButton text={"Finish"} callback={finishGame} />
+              userAnswers.length === TOTAL_QUESTIONS && (
+                <ActionButton text={"Finish"} callback={finishGame} />
+              )
             )}
           </>
         )}
