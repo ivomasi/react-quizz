@@ -25,19 +25,18 @@ export type QuestionState = Question & { answers: string[] };
 //fetch questions from trivia
 export const fetchQuizQuestions = async (
   amount: number,
-  difficulty: Difficulty
+  difficulty: Difficulty,
+  category: number
 ) => {
-  const endpoint = `https://opentdb.com/api.php?amount=${amount}&type=multiple&difficulty=${difficulty}`;
+  const endpoint = `https://opentdb.com/api.php?amount=${amount}&type=multiple&difficulty=${difficulty}&category=${category}`;
 
-  const data = await fetch(endpoint);
-
-  const response = await data.json();
+  const response = await axios.get(endpoint);
 
   //can be written like this as well
   //const
   // const data = await (await fetch(endpoint)).json()
 
-  return response.results.map((question: Question) => ({
+  return response.data.results.map((question: Question) => ({
     ...question,
     answers: shuffleArr([
       ...question.incorrect_answers,

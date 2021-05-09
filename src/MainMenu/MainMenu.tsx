@@ -28,10 +28,6 @@ const MainMenu: React.FC = (props) => {
   const [categories, setCategories] = useState<Category[]>([]);
   const history = useHistory();
 
-  const handleStart = () => {
-    console.log("start it");
-  };
-
   //fetching effect
   useEffect(() => {
     setLoading((prev) => !prev);
@@ -41,11 +37,22 @@ const MainMenu: React.FC = (props) => {
     });
   }, []);
 
+  const handleStart = () => {
+    console.log("start it");
+  };
+
+  const handleCategorySelect = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log(e.currentTarget.value);
+  };
+
   return (
     <SharedLayout>
       <Heading text={"How much do you know?"} />
       <InsideWrapper>
-        <CategoryList categories={categories} />
+        <CategoryList
+          categories={categories}
+          handleCategorySelect={handleCategorySelect}
+        />
       </InsideWrapper>
 
       <ActionButton text={"Start"} callback={handleStart} />

@@ -50,7 +50,8 @@ function Quiz() {
 
     const newQuestions = await fetchQuizQuestions(
       TOTAL_QUESTIONS,
-      Difficulty.EASY
+      Difficulty.EASY,
+      10
     );
 
     setQuestions(newQuestions);

@@ -11,6 +11,7 @@ export const ListOfCategories = styled.ul`
 
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  padding: 0;
 `;
 
 export const CategoryButton = styled.button`
