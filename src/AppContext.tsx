@@ -13,7 +13,8 @@ type ContextProps = {
   userAnswers: AnswerObject[];
   setUserAnswers: (a: any) => void;
 };
-type AnswerObject = {
+export type AnswerObject = {
+  questionNr: number;
   question: string;
   answer: string;
   correct: boolean;

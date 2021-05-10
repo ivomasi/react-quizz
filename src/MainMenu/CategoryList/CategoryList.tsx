@@ -25,8 +25,6 @@ const CategoryList: React.FC<Categories> = ({ categories }) => {
     ctx.setSelectedCategory(category);
   };
 
-  console.log(ctx);
-
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <h2>Category</h2>

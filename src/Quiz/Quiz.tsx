@@ -7,7 +7,7 @@ import ActionButton from "../components/ActionButton";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 //context
-import { AppContext } from "../AppContext";
+import { AppContext, AnswerObject } from "../AppContext";
 
 //router
 import { useLocation, useHistory } from "react-router-dom";
@@ -21,14 +21,6 @@ import { QuestionState } from "../API";
 
 //styles
 import { Wrapper } from "./Quiz.styles";
-
-//types
-export type AnswerObject = {
-  question: string;
-  answer: string;
-  correct: boolean;
-  correctAnswer: string;
-};
 
 type CatID = {
   id: number;
@@ -81,12 +73,32 @@ function Quiz() {
       catID
     );
 
-    setQuestions(newQuestions);
+    const formattedQuestions = newQuestions.map((q: any) => {
+      const formattedAnswers = q.answers.map((a: string) => {
+        return normalText(a);
+      });
+
+      const formattedQuestion = normalText(q.question);
+
+      return { ...q, answers: formattedAnswers, question: formattedQuestion };
+    });
+
+    setQuestions(formattedQuestions);
     setScore(0);
     ctx.setUserAnswers([]);
     setNumber(0);
 
     setLoading(false);
+  };
+
+  const normalText = (text: string) => {
+    //check out replace function in docs, regular expressions in overall, mostly pasted from internet
+    const replaced = text
+      .replace(/&quot;/g, '"')
+      .replace(/&amp;/g, "&")
+      .replace(/&#039;/g, "'");
+
+    return replaced;
   };
 
   const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -102,6 +114,7 @@ function Quiz() {
 
     //create user answer object and push to array, so it can be displayed at the and of quiz
     const currentAnswer: AnswerObject = {
+      questionNr: number + 1,
       question: questions[number].question,
       answer,
       correct,

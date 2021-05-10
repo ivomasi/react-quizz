@@ -1,8 +1,5 @@
 import React, { useContext } from "react";
 
-//types
-import { AnswerObject } from "../Quiz/Quiz";
-
 //context
 import { AppContext } from "../AppContext";
 
