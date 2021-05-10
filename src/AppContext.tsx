@@ -11,9 +11,8 @@ type ContextProps = {
   difficulty: string;
   setDifficulty: (d: string) => void;
   userAnswers: AnswerObject[];
-  setUserAnswers: (a: AnswerObject[]) => void;
+  setUserAnswers: (a: any) => void;
 };
-
 type AnswerObject = {
   question: string;
   answer: string;

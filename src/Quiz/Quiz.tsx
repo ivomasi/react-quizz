@@ -47,7 +47,7 @@ function Quiz() {
 
   const [number, setNumber] = useState(0);
 
-  const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
+  /* const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]); */
 
   const [score, setScore] = useState(0);
 
@@ -83,7 +83,7 @@ function Quiz() {
 
     setQuestions(newQuestions);
     setScore(0);
-    setUserAnswers([]);
+    ctx.setUserAnswers([]);
     setNumber(0);
 
     setLoading(false);
@@ -108,7 +108,10 @@ function Quiz() {
       correctAnswer: questions[number].correct_answer,
     };
 
-    setUserAnswers((userAnswers) => [...userAnswers, currentAnswer]);
+    ctx.setUserAnswers((userAnswers: AnswerObject[]) => [
+      ...userAnswers,
+      currentAnswer,
+    ]);
   };
 
   const nextQuestion = () => {
@@ -139,17 +142,17 @@ function Quiz() {
               <QuestionCard
                 question={questions[number].question}
                 answers={questions[number].answers}
-                userAnswer={userAnswers ? userAnswers[number] : undefined}
+                number={number}
                 callback={checkAnswer}
               />
             )}
             {!loading &&
             !gameOver &&
-            userAnswers.length === number + 1 &&
+            ctx.userAnswers.length === number + 1 &&
             number + 1 !== TOTAL_QUESTIONS ? (
               <ActionButton text={"Next Question"} callback={nextQuestion} />
             ) : (
-              userAnswers.length === TOTAL_QUESTIONS && (
+              ctx.userAnswers.length === TOTAL_QUESTIONS && (
                 <ActionButton text={"Finish"} callback={finishGame} />
               )
             )}
